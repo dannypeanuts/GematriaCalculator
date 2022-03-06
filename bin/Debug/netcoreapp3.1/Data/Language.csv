@@ -1,0 +1,8 @@
+﻿Name,Alphabet,Length,Case
+English,English,26,Upper
+English,Qwerty,26,Upper
+English,Dvorak,26,Upper
+English,Colemak,26,Upper
+Greek,Greek,24,Upper
+Hebrew,Hebrew,22,Lower
+Russian,Russian,33,Upper

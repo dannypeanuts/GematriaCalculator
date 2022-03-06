@@ -1,0 +1,48 @@
+﻿<Window x:Name="mainWindow" x:Class="GematriaCalculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GematriaCalculator"
+        mc:Ignorable="d"
+        Title="Gematria Calculator" Height="600" Width="900" Loaded="mainWindow_Loaded" WindowStartupLocation="CenterScreen">
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Top" Height="25">
+            <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+                <Label>Language:</Label>
+                <ComboBox x:Name="cmbLanguage" Grid.Row="0" Grid.Column="0" Width="150" BorderThickness="0" SelectionChanged="cmbLanguage_SelectionChanged"></ComboBox>
+                <Label>Name:</Label>
+            </StackPanel>
+            <TextBox x:Name="textName" Width="Auto" HorizontalContentAlignment="Stretch" TextChanged="textName_TextChanged" CharacterCasing="Upper"></TextBox>
+        </DockPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="450"></ColumnDefinition>
+                <ColumnDefinition Width="450"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <DockPanel Grid.Column="0">
+                <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
+                    <Label Height="25" HorizontalContentAlignment="Center">Gematria Result</Label>
+                    <DataGrid x:Name="gridResult" SelectionChanged="gridResult_SelectionChanged" VerticalScrollBarVisibility="Hidden" BorderThickness="0" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray" ></DataGrid>
+                </StackPanel> 
+            </DockPanel>
+            <DockPanel Grid.Column="1">
+                <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
+                    <Label Height="25" HorizontalContentAlignment="Center">Gematria System</Label>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"></ColumnDefinition>
+                            <ColumnDefinition Width="150"></ColumnDefinition>
+                            <ColumnDefinition Width="150"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <DataGrid x:Name="gridSystem1" Grid.Column="0" Height="275" VerticalScrollBarVisibility="Hidden" BorderThickness="0" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray"></DataGrid>
+                        <DataGrid x:Name="gridSystem2" Grid.Column="1" Height="275" VerticalScrollBarVisibility="Hidden" BorderThickness="0" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray"></DataGrid>
+                        <DataGrid x:Name="gridSystem3" Grid.Column="2" Height="275" VerticalScrollBarVisibility="Hidden" BorderThickness="0" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray"></DataGrid>
+                    </Grid>
+                    <Label Height="25" HorizontalContentAlignment="Center">Gematria Method</Label>
+                    <DataGrid x:Name="gridMethod" Grid.Row="3" Grid.ColumnSpan="3" Height="275" VerticalScrollBarVisibility="Hidden" BorderThickness="0" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray"></DataGrid>
+                </StackPanel>
+            </DockPanel>
+        </Grid>
+    </DockPanel>
+</Window>
