@@ -18,9 +18,9 @@ Benito Mussolini
 
 ![](Image/benito.JPG)
 
-### Download the Installer
+### Download Installer
 
-To download the installer please download it under 'GematriaSetup' folder.
+To download the MSI installer please download it under ['GematriaSetup'](https://github.com/dannypeanuts/GematriaCalculator/blob/main/GematriaSetup) folder or click [HERE](https://github.com/dannypeanuts/GematriaCalculator/blob/main/GematriaSetup/Release/GematriaSetup.msi).
 
 ### How Does It Works
 
@@ -36,7 +36,7 @@ And the sequence could be any valid numeric system such as simple arithmetic/geo
 
 ![](Image/numeric.JPG)
 
-You are welcome to modify these CSV configuration file to support more language, alphabet and numeric system which is located under 'Data' folder.
+You are welcome to modify these CSV configuration file to support more language, alphabet and numeric system which is located under ['Data'](https://github.com/dannypeanuts/GematriaCalculator/blob/main/Data) folder.
 
 ### Coding Requirement
 
