@@ -42,12 +42,16 @@ namespace GematriaCalculator
                         Languages = new List<Language>();
                         foreach (var record in records)
                         {
-                            var name = record.Name;
-                            var alphabet = record.Alphabet;
-                            var length = Convert.ToInt32(record.Length);
-                            var cases = record.Case;
-                            var language = new Language(name, alphabet, length, cases);
-                            Languages.Add(language);
+                            try
+                            {
+                                var name = record.Name;
+                                var alphabet = record.Alphabet;
+                                var numeric = record.Numeric;
+                                var cases = record.Case;
+                                var language = new Language(name, alphabet, numeric, cases);
+                                Languages.Add(language);
+                            }
+                            catch { }                           
                         }
                     }
                 }
@@ -72,20 +76,20 @@ namespace GematriaCalculator
                         Alphabets = new List<Alphabet>();
                         foreach (var record in records)
                         {
-                            string name = record.Name;
-                            int length = Convert.ToInt32(record.Length);
-                            string cases = record.Case;
-                            string[] strings = record.Chars.Split(',');
-                            var chars = new List<char>();
-                            foreach (var str in strings)
+                            try
                             {
-                                var chr = Convert.ToChar(str);
-                                chars.Add(chr);
+                                string name = record.Name;
+                                string[] strings = record.Chars.Split(',');
+                                var chars = new List<char>();
+                                foreach (var str in strings)
+                                {
+                                    var chr = Convert.ToChar(str);
+                                    chars.Add(chr);
+                                }
+                                var alphabet = new Alphabet(name, chars);
+                                Alphabets.Add(alphabet);
                             }
-                            var alphabet = new Alphabet(name, length, cases, chars);
-                            if (chars.Count != length)
-                                throw new Exception($"Alphabet {name} characters length is not correct!");
-                            Alphabets.Add(alphabet);
+                            catch { }                       
                         }
                     }
                 }
@@ -110,24 +114,29 @@ namespace GematriaCalculator
                         Numerics = new List<Numeric>();
                         foreach (var record in records)
                         {
-                            string name = record.Name;
-                            int length = Convert.ToInt32(record.Length);
-                            bool geometric = Convert.ToBoolean(record.Geometric);
-                            bool arithmetic = Convert.ToBoolean(record.Arithmetic);
-                            string[] strings = record.Series.Split(',');
-                            var series = new List<int>();
-                            foreach (var str in strings)
+                            try
                             {
-                                var num = Convert.ToInt32(str);
-                                series.Add(num);
+                                string name = record.Name;
+                                bool geometric = Convert.ToBoolean(record.Geometric);
+                                bool arithmetic = Convert.ToBoolean(record.Arithmetic);
+                                string[] strings = record.Series.Split(',');
+                                var series = new List<int>();
+                                foreach (var str in strings)
+                                {
+                                    var num = Convert.ToInt32(str);
+                                    series.Add(num);
+                                }
+                                var numeric = new Numeric(name, geometric, arithmetic, series);
+                                Numerics.Add(numeric);
                             }
-                            var numeric = new Numeric(name, length, geometric, arithmetic, series);
-                            if (series.Count != length)
-                                throw new Exception($"Numeric {name} series length is not correct!");
-                            Numerics.Add(numeric);
+                            catch { }                        
                         }
                     }
                 }
+                var maxNum = Numerics.Max(r => r.Length);
+                var maxAlph = Alphabets.Max(r => r.Length);
+                if (maxAlph>maxNum)
+                    throw new Exception($"Numeric series length must be bigger than Alpha characters length!");
             }
             catch (Exception err)
             {
@@ -156,35 +165,56 @@ namespace GematriaCalculator
             return men_name;
         }
 
-        public void GenerateGematria(string language="English")
+        public void GenerateGematria(string language="English", bool canreverse=false)
         {
             Gematrias = new List<Gematria>();
             try
             {
                 var languages = Languages.Where(r => r.Name == language);
-                var alphabets = Alphabets.Where(a => languages.Any(l => a.Name == l.Alphabet & a.Case == l.Case));
-                var numerics = Numerics.Where(n => languages.Any(l => n.Length == l.Length));
+                var alphabets = Alphabets.Where(a => languages.Any(l => a.Name == l.Alphabet));
+                var numerics = Numerics.Where(n => languages.Any(l => n.Name == l.Numeric));
                 foreach (var alpha in alphabets)
                 {
                     foreach (var numeric in numerics)
                     {
-                        var gematria = new Gematria();
-                        gematria.Name = alpha.Name + numeric.Name;
-                        gematria.Geometric = numeric.Geometric;
-                        gematria.Arithmetic = numeric.Arithmetic;
-                        for (var i = 0; i < alpha.Chars.Count; i++)
+                        try
                         {
-                            var key = alpha.Chars[i];
-                            var val = numeric.Series[i];
-                            gematria.Pairs.Add(key, val);
+                            // generate forward gematria
+                            var gematria = new Gematria();
+                            gematria.Name = alpha.Name + numeric.Name;
+                            gematria.Geometric = numeric.Geometric;
+                            gematria.Arithmetic = numeric.Arithmetic;
+                            for (var i = 0; i < alpha.Chars.Count; i++)
+                            {
+                                var key = alpha.Chars[i];
+                                var val = numeric.Series[i];
+                                gematria.Pairs.Add(key, val);
+                            }
+                            Gematrias.Add(gematria);
+                            //generate reverse gematria
+                            if (canreverse)
+                            {
+                                gematria = new Gematria();
+                                gematria.Name = "Rev" + alpha.Name + numeric.Name;
+                                gematria.Geometric = numeric.Geometric;
+                                gematria.Arithmetic = numeric.Arithmetic;
+                                var shift = Math.Abs(numeric.Series.Count - alpha.Chars.Count);
+                                for (var i = 0; i < alpha.Chars.Count; i++)
+                                {
+                                    var key = alpha.Chars[i];
+                                    var val = numeric.Reverses[i + shift];
+                                    gematria.Pairs.Add(key, val);
+                                }
+                                Gematrias.Add(gematria);
+                            }
                         }
-                        Gematrias.Add(gematria);
+                        catch { }
                     }
                 }
             }
             catch (Exception err)
             {
-                Console.WriteLine("ERROR GenerateGematria: " + err);
+                Console.WriteLine("ERROR GenerateGematria() " + err);
             }
         }
 
@@ -197,49 +227,61 @@ namespace GematriaCalculator
                 men_name = CheckName(men_name, cases);
                 foreach (var gem in Gematrias)
                 {
-                    // set default value
-                    int n = men_name.Length;
-                    var result = new GemResult();
-                    result.Gematria = gem.Name;
-                    result.Initial = 0;
-                    result.Adder = 0;
-                    result.Multiplier = 1;
-                    result.Final = 0;
-                    // calculate initial value
-                    foreach (var chr in men_name)
+                    try
                     {
-                        result.Initial = result.Initial + gem.Pairs[chr];
-                    }
-                    // find multiplier
-                    if (gem.Geometric && (antiChrist > result.Initial) && (antiChrist % result.Initial) == 0)
-                    {
-                        result.Multiplier = antiChrist / result.Initial;
-                    }
-                    else
-                    {
-                        // find adder
-                        if ((n != 0) && gem.Arithmetic && (antiChrist > result.Initial) && ((antiChrist - result.Initial) % n) == 0)
+                        // set default value
+                        int n = men_name.Length;
+                        var result = new GemResult();
+                        result.Gematria = gem.Name;
+                        result.Initial = 0;
+                        result.Adder = 0;
+                        result.Multiplier = 1;
+                        result.Final = 0;
+                        // calculate initial value
+                        foreach (var chr in men_name)
                         {
-                            result.Adder = (antiChrist - result.Initial) / n;
+                            try
+                            {
+                                result.Initial = result.Initial + gem.Pairs[chr];
+                            }
+                            catch { }
                         }
+                        // find multiplier
+                        if (gem.Geometric && (antiChrist > result.Initial) && (antiChrist % result.Initial) == 0)
+                        {
+                            result.Multiplier = antiChrist / result.Initial;
+                        }
+                        else
+                        {
+                            // find adder
+                            if ((n != 0) && gem.Arithmetic && (antiChrist > result.Initial) && ((antiChrist - result.Initial) % n) == 0)
+                            {
+                                result.Adder = (antiChrist - result.Initial) / n;
+                            }
+                        }
+                        // calculate final value
+                        foreach (var chr in men_name)
+                        {
+                            try
+                            {
+                                result.Final = result.Final + (gem.Pairs[chr] + result.Adder) * result.Multiplier;
+                            }
+                            catch { }
+                        }
+                        GemResults.Add(result);
                     }
-                    // calculate final value
-                    foreach (var chr in men_name)
-                    {
-                        result.Final = result.Final + (gem.Pairs[chr] + result.Adder) * result.Multiplier;
-                    }
-                    GemResults.Add(result);
+                    catch { }
                 }
                 GemResults = GemResults.OrderByDescending(r => r.Final).ToList();
             }
             catch (Exception err)
             {
-                Console.WriteLine("ERROR CalculateGematria: " + err);
+                Console.WriteLine("ERROR CalculateGematria() " + err);
             }
             return GemResults;
         }
 
-        public List<GemSystem> GematriaSystem(string gem_name)
+        public List<GemSystem> SelectGematria(string gem_name)
         {
             GemSystems = new List<GemSystem>();
             try
@@ -253,12 +295,12 @@ namespace GematriaCalculator
             }
             catch (Exception err)
             {
-                Console.WriteLine("ERROR GematriaSystem: " + err);
+                Console.WriteLine("ERROR SelectGematria() " + err);
             }
             return GemSystems;
         }
 
-        public List<GemMethod> GematriaMethod(string gem_name, string men_name, string cases="Upper")
+        public List<GemMethod> SelectMethod(string gem_name, string men_name, string cases="Upper")
         {
             GemMethods = new List<GemMethod>();
             try
@@ -275,7 +317,7 @@ namespace GematriaCalculator
             }
             catch (Exception err)
             {
-                Console.WriteLine("ERROR GematriaMethod: " + err);
+                Console.WriteLine("ERROR SelectMethod() " + err);
             }
             return GemMethods;
         }

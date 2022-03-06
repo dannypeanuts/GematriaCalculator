@@ -11,7 +11,8 @@
             <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
                 <Label>Language:</Label>
                 <ComboBox x:Name="cmbLanguage" Grid.Row="0" Grid.Column="0" Width="150" BorderThickness="0" SelectionChanged="cmbLanguage_SelectionChanged"></ComboBox>
-                <Label>Name:</Label>
+                <ToggleButton x:Name="btnReverse" BorderThickness="0" IsChecked="False" Margin="10,0,10,0" Click="btnReverse_Click">Reverse</ToggleButton>
+                <Label>Human Name:</Label>
             </StackPanel>
             <TextBox x:Name="textName" Width="Auto" HorizontalContentAlignment="Stretch" TextChanged="textName_TextChanged" CharacterCasing="Upper"></TextBox>
         </DockPanel>

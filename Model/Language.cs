@@ -6,16 +6,16 @@ namespace GematriaCalculator.Model
 {
     public class Language
     {
-        public Language(string name, string alphabet, int length, string cases="Upper")
+        public Language(string name, string alphabet, string numeric, string cases="Upper")
         {
             Name = name;
             Alphabet = alphabet;
-            Length = length;
+            Numeric = numeric;
             Case = cases;
         }
         public string Name { get; set; }
         public string Alphabet { get; set; }
-        public int Length { get; set; }
+        public string Numeric { get; set; }
         public string Case { get; set; }
     }
 }

@@ -1,8 +1,10 @@
-﻿# Gematria Calculator - AntiChrist Finder - 666
+﻿# Gematria Calculator
+#### AntiChrist Finder - Number of the Beast - Who Is 666
 
 <em>Rev 13:18 This calls for wisdom. Let the person who has insight calculate the number of the beast, for it is the number of a man. That number is 666.</em>
 
-This calculator will help you find the gematria number for human name and suggest the correct gematria system for Antichrist 666. Currently support English, Greek, Hebrew and Russian character. 
+This calculator will help you find the gematria number for human name and suggest the correct gematria system for it. 
+Language supported: English, Russian, Japanese, Greek and Hebrew. 
 
 ### Example of Gematria
 
@@ -44,8 +46,8 @@ You are welcome to modify these CSV configuration file to support more language,
    - Extension Required: MS VS Installer Projects
 2. Dot Net Framework 3.1
 3. WPF Framework
-4. C#.Net Programming
-5. Git Client
+4. C# Programming Language
+5. Any Git Client
 
 
 

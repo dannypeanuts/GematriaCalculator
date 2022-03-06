@@ -6,17 +6,15 @@ namespace GematriaCalculator.Model
 {
     public class Alphabet
     {
-        public Alphabet(string name, int length, string cases, List<char> chars)
+        public Alphabet(string name, List<char> chars)
         {
             Chars = new List<char>();
             Name = name;
-            Length = length;
-            Case = cases;
+            Length = chars.Count;
             Chars = chars;
         }
         public string Name { get; set; }
         public int Length { get; set; }
-        public string Case { get; set; }
         public List<char> Chars { get; set; }
     }
 }

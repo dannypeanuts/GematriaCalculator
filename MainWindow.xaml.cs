@@ -41,7 +41,7 @@ namespace GematriaCalculator
             }
             catch (Exception err)
             {
-                Console.WriteLine("ERROR mainWindow_Loaded: " + err);
+                Console.WriteLine("ERROR mainWindow_Loaded() " + err);
             }         
         }
 
@@ -50,7 +50,7 @@ namespace GematriaCalculator
             try
             {
                 Language = cmbLanguage.SelectedItem as String;
-                Case = Calculator.Languages.Where(r => r.Name == Language).First().Case;         
+                Case = Calculator.Languages.Where(r => r.Name == Language).First().Case;
                 Calculator.GenerateGematria(Language);
                 switch (Case)
                 {
@@ -60,7 +60,26 @@ namespace GematriaCalculator
             }
             catch (Exception err)
             {
-                Console.WriteLine("ERROR cmbLanguage_SelectionChanged: " + err);
+                Console.WriteLine("ERROR cmbLanguage_SelectionChanged() " + err);
+            }
+        }
+
+        private void btnReverse_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {         
+                Calculator.GenerateGematria(Language, btnReverse.IsChecked ?? false);
+                var name = textName.Text;
+                var result = Calculator.CalculateGematria(name, Case);
+                gridResult.ItemsSource = result;
+                gridSystem1.ItemsSource = null;
+                gridSystem2.ItemsSource = null;
+                gridSystem3.ItemsSource = null;
+                gridMethod.ItemsSource = null;
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine("ERROR btnReverse_Checked() " + err);
             }
         }
 
@@ -78,7 +97,7 @@ namespace GematriaCalculator
             }
             catch (Exception err)
             {
-                Console.WriteLine("ERROR textName_TextChanged: " + err);
+                Console.WriteLine("ERROR textName_TextChanged() " + err);
             }
         }
 
@@ -88,8 +107,8 @@ namespace GematriaCalculator
             {
                 var men_name = textName.Text;
                 var gem_name = (gridResult.SelectedItem as GemResult).Gematria;
-                var system = Calculator.GematriaSystem(gem_name);
-                var method = Calculator.GematriaMethod(gem_name, men_name);
+                var system = Calculator.SelectGematria(gem_name);
+                var method = Calculator.SelectMethod(gem_name, men_name);
                 gridMethod.ItemsSource = method;
                 var n = (int)Math.Ceiling((decimal)(system.Count / 3)) + 1;
                 gridSystem1.ItemsSource = system.Take(n); system.RemoveRange(0, n);
@@ -98,7 +117,7 @@ namespace GematriaCalculator
             }
             catch (Exception err)
             {
-                Console.WriteLine("ERROR gridResult_SelectionChanged: " + err);
+                Console.WriteLine("ERROR gridResult_SelectionChanged() " + err);
             }
         }
 
