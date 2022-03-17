@@ -7,11 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="gematria.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CsvHelper" Version="27.2.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Image\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="gematria.ico" />
   </ItemGroup>
 
 </Project>

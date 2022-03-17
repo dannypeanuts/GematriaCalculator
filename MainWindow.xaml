@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GematriaCalculator"
         mc:Ignorable="d"
-        Title="Gematria Calculator" Height="600" Width="900" Loaded="mainWindow_Loaded" WindowStartupLocation="CenterScreen">
+        Title="Gematria Calculator" Height="600" Width="900" Loaded="mainWindow_Loaded" WindowStartupLocation="CenterScreen" Icon="/gematria.ico">
     <DockPanel>
         <DockPanel DockPanel.Dock="Top" Height="25">
             <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">

@@ -19,3 +19,4 @@ C:\Users\Denny Imanuel\Documents\TestCode\GematriaCalculator\obj\Release\netcore
 C:\Users\Denny Imanuel\Documents\TestCode\GematriaCalculator\obj\Release\netcoreapp3.1\GematriaCalculator.pdb
 C:\Users\Denny Imanuel\Documents\TestCode\GematriaCalculator\obj\Release\netcoreapp3.1\GematriaCalculator.genruntimeconfig.cache
 C:\Users\Denny Imanuel\Documents\TestCode\GematriaCalculator\obj\Release\netcoreapp3.1\GematriaCalculator.csproj.CopyComplete
+C:\Users\Denny Imanuel\Documents\TestCode\GematriaCalculator\obj\Release\netcoreapp3.1\GematriaCalculator.csproj.AssemblyReference.cache
