@@ -175,6 +175,22 @@ namespace GematriaCalculator
                 var numerics = Numerics.Where(n => languages.Any(l => n.Name == l.Numeric));
                 foreach (var alpha in alphabets)
                 {
+                    // generate ascii gematria
+                    if (alpha.Name == language)
+                    {
+                        var gematria = new Gematria();
+                        gematria.Name = alpha.Name + "Ascii";
+                        gematria.Geometric = false;
+                        gematria.Arithmetic = false;
+                        for (var i = 0; i < alpha.Chars.Count; i++)
+                        {
+                            var key = alpha.Chars[i];
+                            var val = (int)key;
+                            gematria.Pairs.Add(key, val);
+                        }
+                        Gematrias.Add(gematria);
+                    }
+                    // generate numeric gematria
                     foreach (var numeric in numerics)
                     {
                         try

@@ -87,13 +87,16 @@ namespace GematriaCalculator
         {
             try
             {
-                var name = textName.Text;
-                var result = Calculator.CalculateGematria(name, Case);
-                gridResult.ItemsSource = result;
-                gridSystem1.ItemsSource = null;
-                gridSystem2.ItemsSource = null;
-                gridSystem3.ItemsSource = null;
-                gridMethod.ItemsSource = null;
+                var men_name = textName.Text;
+                if (!String.IsNullOrWhiteSpace(men_name))
+                {
+                    var result = Calculator.CalculateGematria(men_name, Case);
+                    gridResult.ItemsSource = result;
+                    gridSystem1.ItemsSource = null;
+                    gridSystem2.ItemsSource = null;
+                    gridSystem3.ItemsSource = null;
+                    gridMethod.ItemsSource = null;
+                }
             }
             catch (Exception err)
             {
@@ -106,14 +109,17 @@ namespace GematriaCalculator
             try
             {
                 var men_name = textName.Text;
-                var gem_name = (gridResult.SelectedItem as GemResult).Gematria;
-                var system = Calculator.SelectGematria(gem_name);
-                var method = Calculator.SelectMethod(gem_name, men_name);
-                gridMethod.ItemsSource = method;
-                var n = (int)Math.Ceiling((decimal)(system.Count / 3)) + 1;
-                gridSystem1.ItemsSource = system.Take(n); system.RemoveRange(0, n);
-                gridSystem2.ItemsSource = system.Take(n); system.RemoveRange(0, n);
-                gridSystem3.ItemsSource = system.Take(n); system.RemoveRange(0, n);             
+                if (!String.IsNullOrWhiteSpace(men_name) && gridResult.SelectedItem != null)
+                {
+                    var gem_name = (gridResult.SelectedItem as GemResult).Gematria;
+                    var system = Calculator.SelectGematria(gem_name);
+                    var method = Calculator.SelectMethod(gem_name, men_name);
+                    gridMethod.ItemsSource = method;
+                    var n = (int)Math.Ceiling((decimal)(system.Count / 3)) + 1;
+                    gridSystem1.ItemsSource = system.Take(n); system.RemoveRange(0, n);
+                    gridSystem2.ItemsSource = system.Take(n); system.RemoveRange(0, n);
+                    gridSystem3.ItemsSource = system.Take(n); system.RemoveRange(0, n);
+                }
             }
             catch (Exception err)
             {
