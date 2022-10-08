@@ -22,7 +22,7 @@ Benito Mussolini
 
 Genghis Khan
 
-![](Image/genghis.JPG)
+![](Image/genghis.jpg)
 
 Nero Caesar
 
@@ -39,7 +39,7 @@ To download the MSI installer please download it under ['GematriaSetup'](https:/
 
 ### How Does It Works
 
-Gematria is basically assigning an alphabet system with a numeric system within any valid human language. 
+Gematria is a method of assigning alphabet system to numeric system via geometric and arithmetic sequencing.
 
 ![](Image/language.JPG)
 
@@ -47,7 +47,7 @@ The alphabet could be any valid alphabet system from different language or keybo
 
 ![](Image/alphabet.JPG)
 
-And the sequence could be any valid numeric system such as simple arithmetic/geometric sequence, prime series, etc.
+And the sequence could be any valid numeric system such as simple geometric, simple arithmetic, prime series, etc.
 
 ![](Image/numeric.JPG)
 
