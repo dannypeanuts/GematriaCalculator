@@ -14,7 +14,7 @@
                 <ToggleButton x:Name="btnReverse" BorderThickness="0" IsChecked="False" Margin="10,0,10,0" Click="btnReverse_Click">Reverse</ToggleButton>
                 <Label>Human Name:</Label>
             </StackPanel>
-            <TextBox x:Name="textName" Width="Auto" HorizontalContentAlignment="Stretch" TextChanged="textName_TextChanged" CharacterCasing="Upper"></TextBox>
+            <TextBox x:Name="textName" Width="Auto" HorizontalContentAlignment="Stretch" TextChanged="txtName_TextChanged" CharacterCasing="Upper"></TextBox>
         </DockPanel>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -23,25 +23,25 @@
             </Grid.ColumnDefinitions>
             <DockPanel Grid.Column="0">
                 <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
-                    <Label Height="25" HorizontalContentAlignment="Center">Gematria Result</Label>
-                    <DataGrid x:Name="gridResult" SelectionChanged="gridResult_SelectionChanged" VerticalScrollBarVisibility="Hidden" BorderThickness="0" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray" ></DataGrid>
+                    <Label x:Name="txtResult" Height="25" HorizontalContentAlignment="Center" FontWeight="Bold">Gematria Result</Label>
+                    <DataGrid x:Name="gridResult" IsReadOnly="True" SelectionChanged="gridResult_SelectionChanged" VerticalScrollBarVisibility="Hidden" BorderThickness="0" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray" ></DataGrid>
                 </StackPanel> 
             </DockPanel>
             <DockPanel Grid.Column="1">
                 <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
-                    <Label Height="25" HorizontalContentAlignment="Center">Gematria System</Label>
+                    <Label x:Name="txtSystem" Height="25" HorizontalContentAlignment="Center" FontWeight="Bold">Gematria System</Label>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="150"></ColumnDefinition>
                             <ColumnDefinition Width="150"></ColumnDefinition>
                             <ColumnDefinition Width="150"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <DataGrid x:Name="gridSystem1" Grid.Column="0" Height="275" VerticalScrollBarVisibility="Hidden" BorderThickness="0" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray"></DataGrid>
-                        <DataGrid x:Name="gridSystem2" Grid.Column="1" Height="275" VerticalScrollBarVisibility="Hidden" BorderThickness="0" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray"></DataGrid>
-                        <DataGrid x:Name="gridSystem3" Grid.Column="2" Height="275" VerticalScrollBarVisibility="Hidden" BorderThickness="0" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray"></DataGrid>
+                        <DataGrid x:Name="gridSystem1" Grid.Column="0" Height="275" IsReadOnly="True" VerticalScrollBarVisibility="Hidden" BorderThickness="0" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray"></DataGrid>
+                        <DataGrid x:Name="gridSystem2" Grid.Column="1" Height="275" IsReadOnly="True" VerticalScrollBarVisibility="Hidden" BorderThickness="0" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray"></DataGrid>
+                        <DataGrid x:Name="gridSystem3" Grid.Column="2" Height="275" IsReadOnly="True" VerticalScrollBarVisibility="Hidden" BorderThickness="0" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray"></DataGrid>
                     </Grid>
-                    <Label Height="25" HorizontalContentAlignment="Center">Gematria Method</Label>
-                    <DataGrid x:Name="gridMethod" Grid.Row="3" Grid.ColumnSpan="3" Height="275" VerticalScrollBarVisibility="Hidden" BorderThickness="0" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray"></DataGrid>
+                    <Label x:Name="txtMethod" Height="25" HorizontalContentAlignment="Center" FontWeight="Bold">Gematria Method</Label>
+                    <DataGrid x:Name="gridMethod" Grid.Row="3" Grid.ColumnSpan="3" IsReadOnly="True" Height="275" VerticalScrollBarVisibility="Hidden" BorderThickness="0" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray"></DataGrid>
                 </StackPanel>
             </DockPanel>
         </Grid>

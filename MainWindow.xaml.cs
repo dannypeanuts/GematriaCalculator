@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -23,11 +25,43 @@ namespace GematriaCalculator
     public partial class MainWindow : Window
     {
         GematriaCalc Calculator;
+        System.Timers.Timer txtDelay;
         string Language = "English";
         string Case = "Upper";
         public MainWindow()
         {
-            InitializeComponent();        
+            InitializeComponent();
+            txtDelay = new System.Timers.Timer();
+            txtDelay.Interval = 1000;
+            txtDelay.Elapsed += txtDelay_Elapsed;
+        }
+
+        private void txtDelay_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            try
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    var men_name = textName.Text;
+                    if (!String.IsNullOrWhiteSpace(men_name))
+                    {
+                        var result = Calculator.CalculateGematria(men_name, Case);
+                        txtSystem.Content = "Gematria System";
+                        txtMethod.Content = "Gematria Method";
+                        gridResult.ItemsSource = result;
+                        gridSystem1.ItemsSource = null;
+                        gridSystem2.ItemsSource = null;
+                        gridSystem3.ItemsSource = null;
+                        gridMethod.ItemsSource = null;
+                        txtDelay.Stop();
+                    }
+                });
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine("ERROR textName_TextChanged() " + err);
+                txtDelay.Stop();
+            }
         }
 
         private void mainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -83,25 +117,10 @@ namespace GematriaCalculator
             }
         }
 
-        private void textName_TextChanged(object sender, TextChangedEventArgs e)
+        private void txtName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            try
-            {
-                var men_name = textName.Text;
-                if (!String.IsNullOrWhiteSpace(men_name))
-                {
-                    var result = Calculator.CalculateGematria(men_name, Case);
-                    gridResult.ItemsSource = result;
-                    gridSystem1.ItemsSource = null;
-                    gridSystem2.ItemsSource = null;
-                    gridSystem3.ItemsSource = null;
-                    gridMethod.ItemsSource = null;
-                }
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine("ERROR textName_TextChanged() " + err);
-            }
+            txtDelay.Stop();
+            txtDelay.Start();
         }
 
         private void gridResult_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -112,13 +131,20 @@ namespace GematriaCalculator
                 if (!String.IsNullOrWhiteSpace(men_name) && gridResult.SelectedItem != null)
                 {
                     var gem_name = (gridResult.SelectedItem as GemResult).Gematria;
-                    var system = Calculator.SelectGematria(gem_name);
-                    var method = Calculator.SelectMethod(gem_name, men_name);
-                    gridMethod.ItemsSource = method;
-                    var n = (int)Math.Ceiling((decimal)(system.Count / 3)) + 1;
-                    gridSystem1.ItemsSource = system.Take(n); system.RemoveRange(0, n);
-                    gridSystem2.ItemsSource = system.Take(n); system.RemoveRange(0, n);
-                    gridSystem3.ItemsSource = system.Take(n); system.RemoveRange(0, n);
+                    Task.Run(() => {
+                        var system = Calculator.SelectGematria(gem_name);
+                        var method = Calculator.SelectMethod(gem_name, men_name);
+                        var n = (int)Math.Ceiling((decimal)(system.Count / 3)) + 1;
+                        Dispatcher.Invoke(() => {
+                            txtSystem.Content = "Using "  + gem_name + " Gematria";
+                            txtMethod.Content = "Total " + men_name + " Gematria";
+                            gridMethod.ItemsSource = method;
+                            gridSystem1.ItemsSource = system.Take(n); system.RemoveRange(0, n);
+                            gridSystem2.ItemsSource = system.Take(n); system.RemoveRange(0, n);
+                            gridSystem3.ItemsSource = system.Take(n);
+                        });
+                    });
+
                 }
             }
             catch (Exception err)

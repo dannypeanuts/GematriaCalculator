@@ -19,3 +19,25 @@ C:\Users\Denny Imanuel\Documents\TestCode\GematriaCalculator\obj\Debug\netcoreap
 C:\Users\Denny Imanuel\Documents\TestCode\GematriaCalculator\obj\Debug\netcoreapp3.1\GematriaCalculator.genruntimeconfig.cache
 C:\Users\Denny Imanuel\Documents\TestCode\GematriaCalculator\bin\Debug\netcoreapp3.1\CsvHelper.dll
 C:\Users\Denny Imanuel\Documents\TestCode\GematriaCalculator\obj\Debug\netcoreapp3.1\GematriaCalculator.csproj.CopyComplete
+C:\Users\danny\source\repos\GematriaCalculator\bin\Debug\netcoreapp3.1\GematriaCalculator.exe
+C:\Users\danny\source\repos\GematriaCalculator\bin\Debug\netcoreapp3.1\GematriaCalculator.deps.json
+C:\Users\danny\source\repos\GematriaCalculator\bin\Debug\netcoreapp3.1\GematriaCalculator.runtimeconfig.json
+C:\Users\danny\source\repos\GematriaCalculator\bin\Debug\netcoreapp3.1\GematriaCalculator.runtimeconfig.dev.json
+C:\Users\danny\source\repos\GematriaCalculator\bin\Debug\netcoreapp3.1\GematriaCalculator.dll
+C:\Users\danny\source\repos\GematriaCalculator\bin\Debug\netcoreapp3.1\GematriaCalculator.pdb
+C:\Users\danny\source\repos\GematriaCalculator\bin\Debug\netcoreapp3.1\CsvHelper.dll
+C:\Users\danny\source\repos\GematriaCalculator\obj\Debug\netcoreapp3.1\GematriaCalculator.csproj.AssemblyReference.cache
+C:\Users\danny\source\repos\GematriaCalculator\obj\Debug\netcoreapp3.1\MainWindow.g.cs
+C:\Users\danny\source\repos\GematriaCalculator\obj\Debug\netcoreapp3.1\App.g.cs
+C:\Users\danny\source\repos\GematriaCalculator\obj\Debug\netcoreapp3.1\GematriaCalculator_MarkupCompile.cache
+C:\Users\danny\source\repos\GematriaCalculator\obj\Debug\netcoreapp3.1\GematriaCalculator_MarkupCompile.lref
+C:\Users\danny\source\repos\GematriaCalculator\obj\Debug\netcoreapp3.1\MainWindow.baml
+C:\Users\danny\source\repos\GematriaCalculator\obj\Debug\netcoreapp3.1\GematriaCalculator.g.resources
+C:\Users\danny\source\repos\GematriaCalculator\obj\Debug\netcoreapp3.1\GematriaCalculator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\danny\source\repos\GematriaCalculator\obj\Debug\netcoreapp3.1\GematriaCalculator.AssemblyInfoInputs.cache
+C:\Users\danny\source\repos\GematriaCalculator\obj\Debug\netcoreapp3.1\GematriaCalculator.AssemblyInfo.cs
+C:\Users\danny\source\repos\GematriaCalculator\obj\Debug\netcoreapp3.1\GematriaCalculator.csproj.CoreCompileInputs.cache
+C:\Users\danny\source\repos\GematriaCalculator\obj\Debug\netcoreapp3.1\GematriaCalculator.csproj.CopyComplete
+C:\Users\danny\source\repos\GematriaCalculator\obj\Debug\netcoreapp3.1\GematriaCalculator.dll
+C:\Users\danny\source\repos\GematriaCalculator\obj\Debug\netcoreapp3.1\GematriaCalculator.pdb
+C:\Users\danny\source\repos\GematriaCalculator\obj\Debug\netcoreapp3.1\GematriaCalculator.genruntimeconfig.cache

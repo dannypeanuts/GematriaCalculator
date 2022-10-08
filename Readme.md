@@ -18,7 +18,20 @@ Joseph Stalin
 
 Benito Mussolini
 
-![](Image/benito.JPG)
+![](Image/mussolini.JPG)
+
+Genghis Khan
+
+![](Image/genghis.JPG)
+
+Nero Caesar
+
+![](Image/nero.JPG)
+
+Vladimir Putin
+
+![](Image/putin.JPG)
+
 
 ### Download Installer
 
